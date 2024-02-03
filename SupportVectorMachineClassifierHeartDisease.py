@@ -1,8 +1,9 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import recall_score
 from sklearn import svm
+from sklearn.preprocessing import StandardScaler
 
 
 data = pd.read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data", header = None)
@@ -22,6 +23,10 @@ classData = data.iloc[:,13]
 # Extract the data attributes//x
 attributeData = data.iloc[:, 0:13]
 
+# Normalize the data attributes
+scaler = StandardScaler()
+attributeData_normalized = scaler.fit_transform(attributeData)
+
 # Split the data for training and for testing
 dataTrain, dataTest, classTrain, classTest = train_test_split(attributeData, classData, test_size = 0.3, random_state = 1)
 
@@ -34,4 +39,5 @@ clf.fit(dataTrain, classTrain)
 #Predict the response for test dataset
 y_pred = clf.predict(dataTest)
 
-print('The accuracy of the classifier is', accuracy_score(classTest, y_pred))
+accuracy = recall_score(classTest, y_pred, average='macro')
+print('The accuracy of the classifier is', accuracy)
