@@ -20,7 +20,7 @@ Various classifiers were employed in this project using the scikit-learn (sklear
 
 ### Classification Reports
     -----------------------------------------------------------------
-    K Nearest Neighbors
+                            K Nearest Neighbors
     -----------------------------------------------------------------
                   precision    recall  f1-score   support
 
@@ -32,7 +32,7 @@ Various classifiers were employed in this project using the scikit-learn (sklear
     weighted avg       0.78      0.78      0.78        98
 
     -----------------------------------------------------------------
-    Random Forest
+                                Random Forest
     -----------------------------------------------------------------
                   precision    recall  f1-score   support
 
@@ -44,7 +44,7 @@ Various classifiers were employed in this project using the scikit-learn (sklear
     weighted avg       0.79      0.78      0.78        99
 
     -----------------------------------------------------------------
-    Decision Tree
+                              Decision Tree
     -----------------------------------------------------------------
                   precision    recall  f1-score   support
 
@@ -56,7 +56,7 @@ Various classifiers were employed in this project using the scikit-learn (sklear
     weighted avg       0.85      0.85      0.85        60
 
     -----------------------------------------------------------------
-    Support Vector Machine
+                          Support Vector Machine
     -----------------------------------------------------------------
                   precision    recall  f1-score   support
 
