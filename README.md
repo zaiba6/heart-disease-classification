@@ -6,3 +6,12 @@ Used Pandas package to pre-process data.
 
 [1] Robert Detrano, M.D., Ph.D.. (1988). Heart Disease Databases [Cleveland]. V.A. Medical 
   Center, Long Beach and Cleveland Clinic Foundation.
+
+
+Notes on the data
+- The data was preprocessed by first removing any values with '?'
+- The target column, lablled 'num' was originally labled with values ranging from 0 - 4, 0 being no signs of heart diease, and the rest being varying degrees of the diease, so a relabeling was 
+preformed, and all values 1 - 4 were processed to the value 1, indicating the precence of heart diease. 
+
+* copy and paste the reports here * 
+talk about how the supports are different and that could be the cause of fluctuations in the imbalanced datasets. 

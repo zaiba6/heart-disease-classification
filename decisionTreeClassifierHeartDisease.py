@@ -3,6 +3,8 @@ import numpy as np
 from sklearn import tree
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import classification_report
 
 # Read data
 data = pd.read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data")
@@ -24,8 +26,12 @@ classData = data.iloc[:,13]
 # Extract the data attributes
 attributeData = data.iloc[:, 0:13]
 
+# Normalize the data attributes
+scaler = MinMaxScaler()
+attributeData_normalized = scaler.fit_transform(attributeData)
+
 # Split the data for training and for testing
-dataTrain, dataTest, classTrain, classTest = train_test_split(attributeData, classData, test_size = 0.2, random_state = 2)
+dataTrain, dataTest, classTrain, classTest = train_test_split(attributeData_normalized, classData, test_size = 0.2, random_state = 2)
 
 # Create decision tree classifier
 clf = tree.DecisionTreeClassifier(criterion = 'entropy', max_depth = 3)
@@ -36,8 +42,8 @@ clf = clf.fit(dataTrain, classTrain)
 # Apply the decision tree to classify the test data
 predC = clf.predict(dataTest)
 
-# Compute the accuracy of the classifier on 'testData'
-print('The accuracy of the classifier is', accuracy_score(classTest, predC))
+# More detailed classification report
+print(classification_report(classTest, predC))
 
 #print tree
 tree.plot_tree(clf, fontsize = 10)

@@ -1,9 +1,9 @@
 import numpy as np
 import pandas as pd
-
+from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn import metrics
+from sklearn.preprocessing import MinMaxScaler
 
 
 # Read the data
@@ -24,8 +24,11 @@ attributes = data.iloc[:, 0:13]
 # Extract the target class//traget
 target = data.iloc[:,13]
 
+scaler = MinMaxScaler()
+attributeData_normalized = scaler.fit_transform(attributes)
+
 #split into training and testing
-attributes_train, attributes_test, target_train, target_test = train_test_split(attributes, target, test_size = 0.33)
+attributes_train, attributes_test, target_train, target_test = train_test_split(attributeData_normalized, target, test_size = 0.33)
 
 #call the classifier and give estimation number
 gaussC = RandomForestClassifier(n_estimators = 100)
@@ -36,4 +39,5 @@ gaussC.fit(attributes_train, target_train)
 #to predict accuracy
 targ_pred = gaussC.predict(attributes_test)
 
-print("Accuracy:",metrics.accuracy_score(target_test, targ_pred))
+# More detailed classification report
+print(classification_report(target_test, targ_pred))
